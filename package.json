@@ -5,6 +5,7 @@
   "main": "index.js",
   "repository": "git@github.com:Quincy0807/Ukiyo.git",
   "author": "Quincy <q.c.yamblbq@gmail.com>",
+  "homepage": "https://github.com/Quincy0807/Ukiyo",
   "dependencies": {
     "bulma": "^0.6.1",
     "object-assign": "4.1.1",

@@ -2,6 +2,7 @@ import React from 'react'
 import {Switch, Route} from 'react-router-dom'
 import NavLink from '../../components/routers/NavLink'
 import Breadcrumb from './Breadcrumb'
+import Tabs from './Tabs'
 
 const isActiveFun = (match,location) => ~['/components', '/components/breadcrumb'].indexOf(location.pathname)
 export const ComponentsView = () => (
@@ -15,6 +16,7 @@ export const ComponentsView = () => (
     <Switch>
       <Route exact path="/components" component={Breadcrumb} />
       <Route path="/components/breadcrumb" component={Breadcrumb} />
+      <Route path="/components/tabs" component={Tabs} />
     </Switch>
   </div>
 )

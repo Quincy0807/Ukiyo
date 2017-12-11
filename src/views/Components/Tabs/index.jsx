@@ -1,4 +1,5 @@
-import React from 'react'
+//@flow
+import * as React from 'react'
 import styled from 'styled-components'
 import SyntaxHighlighter from 'react-syntax-highlighter/prism'
 import {dark, twilight} from 'react-syntax-highlighter/styles/prism'
@@ -6,6 +7,11 @@ import {dark, twilight} from 'react-syntax-highlighter/styles/prism'
 const Divider = styled.div`
   height: 10px;
 `
+
+type TabsProps = {
+  className?: string,
+  style?: {[string]: string}
+}
 
 const Tabs = styled.div`
   & {
@@ -108,7 +114,7 @@ const Tabs = styled.div`
   }
 `
 
-const NormalTabs = ({className = '', style = {}}) => (
+const NormalTabs = ({className , style}: TabsProps) => (
   <Tabs className={className} style={style}>
     <ul>
       <li>
@@ -127,16 +133,24 @@ const NormalTabs = ({className = '', style = {}}) => (
   </Tabs>
 )
 
-const SmallTabs = props => <NormalTabs className="is-small" {...props} />
-const FullWidthTabs = props => (
+const SmallTabs = (props: TabsProps) => <NormalTabs className="is-small" {...props} />
+
+const FullWidthTabs = (props: TabsProps) => (
   <NormalTabs className="is-fullwidth " {...props} />
 )
-const BoxTabs = props => <NormalTabs className="is-box" {...props} />
-const ToggleRoundedTabs = props => (
+const BoxTabs = (props: TabsProps) => <NormalTabs className="is-box" {...props} />
+
+const ToggleRoundedTabs = (props: TabsProps) => (
   <NormalTabs className="is-toggle-rounded" {...props} />
 )
 
-const Section = ({title = null, comp, children}) => (
+type SectionProps = {
+  title: string,
+  comp: React.Node,
+  children: React.ChildrenArray<React.Node> | React.Node
+}
+
+const Section = ({title, comp, children}: SectionProps) => (
   <div className="section">
     {title && <p className="title">{title}</p>}
     <div className="columns">{comp}</div>
@@ -149,6 +163,11 @@ const Section = ({title = null, comp, children}) => (
     </div>
   </div>
 )
+
+Section.defaultProps = {
+  title: null
+}
+
 export default () => (
   <div>
     <Section title="Normal Tabs" comp={<NormalTabs style={{width: '100%'}} />}>

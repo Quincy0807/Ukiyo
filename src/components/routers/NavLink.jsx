@@ -1,6 +1,7 @@
 //@flow
 import React from 'react'
 import {Route, Link} from 'react-router-dom'
+import type {ContextRouter} from 'react-router-dom'
 
 type NavLinkProps = {
   to: string,
@@ -10,10 +11,10 @@ type NavLinkProps = {
   activeClassName: string,
   activeLiClassName: string,
   className: string,
-  style: {[string]:string},
-  isActive:  ((match: boolean, location: {pathname: string})=> boolean) | boolean,
-  activeStyle: {[string]:string},
-  'aria-current': boolean
+  style: {[string]: string},
+  isActive: ((location: {pathname: string}) => boolean) | boolean,
+  activeStyle: {[string]: string},
+  'aria-current': boolean,
 }
 
 const NavLink = ({
@@ -40,8 +41,13 @@ const NavLink = ({
       exact={exact}
       strict={strict}
       location={location}
-      children={({location, match}:{location:{pathname:string}, match:boolean}) => {
-        const isActive = !!(typeof getIsActive !== 'boolean' ? getIsActive(match, location) : match)
+      children={({location, match}: ContextRouter) => {
+        let isActive
+        if (typeof getIsActive !== 'boolean') {
+          isActive = getIsActive(location)
+        } else {
+          isActive = match
+        }
 
         return (
           <li className={(isActive && activeLiClassName) || ''}>

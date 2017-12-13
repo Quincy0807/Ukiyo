@@ -5,7 +5,7 @@ import NavLink from '../../components/routers/NavLink'
 import Breadcrumb from './Breadcrumb'
 import Tabs from './Tabs'
 
-const isActiveFun = (match: boolean, location: {pathname: string}) => !!~['/components', '/components/breadcrumb'].indexOf(location.pathname)
+const isActiveFun = (location: {pathname: string}) => !!~['/components', '/components/breadcrumb'].indexOf(location.pathname)
 export const ComponentsView = () => (
   <div>
     <div className="tabs is-large is-boxed">

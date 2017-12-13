@@ -5,6 +5,9 @@
 [libs]
 
 [lints]
+all=error
+sketchy-null=warn
+untyped-import=off
 
 [options]
 
